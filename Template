@@ -1,0 +1,44 @@
+<template>
+  <div class="todo-app">
+    <h1>Список справ</h1>
+    <todo-form @add="addTodo" />
+    <todo-list :todos="todos" 
+      @toggle="toggleTodo"
+      @edit="updateTodo"
+      @remove="removeTodo"
+    />
+  </div>
+</template>
+
+<script>
+import TodoList from './components/TodoList.vue'
+import TodoForm from './components/TodoForm.vue'
+
+export default {
+  // ... інші імпорти та компоненти
+  methods: {
+    addTodo(text) {
+      this.todos.push({
+        id: Date.now(),
+        text,
+        completed: false
+      })
+    },
+    toggleTodo(id) {
+      const todo = this.todos.find(t => t.id === id)
+      if (todo) {
+        todo.completed = !todo.completed
+      }
+    },
+    updateTodo({ id, text }) {
+      const todo = this.todos.find(t => t.id === id)
+      if (todo) {
+        todo.text = text
+      }
+    },
+    removeTodo(id) {
+      this.todos = this.todos.filter(t => t.id !== id)
+    }
+  }
+}
+</script>
