@@ -1,0 +1,53 @@
+// components/TodoForm.vue
+<template>
+  <form @submit.prevent="handleSubmit" class="todo-form">
+    <input
+      type="text"
+      v-model="newTodo"
+      placeholder="Що потрібно зробити?"
+      class="todo-input"
+    />
+    <button type="submit" class="todo-btn">Додати</button>
+  </form>
+</template>
+
+<script>
+export default {
+  name: 'TodoForm',
+  data() {
+    return {
+      newTodo: ''
+    }
+  },
+  methods: {
+    handleSubmit() {
+      if (this.newTodo.trim()) {
+        this.$emit('add', this.newTodo)
+        this.newTodo = ''
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+.todo-form {
+  display: flex;
+  margin-bottom: 20px;
+}
+.todo-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+}
+.todo-btn {
+  padding: 10px 20px;
+  background: #42b983;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.todo-btn:hover {
+  background: #3aa876;
+}
+</style>
