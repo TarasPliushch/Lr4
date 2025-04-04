@@ -1,0 +1,36 @@
+// App.vue
+<template>
+  <div class="todo-app">
+    <h1>Список справ</h1>
+    <todo-list :todos="todos" />
+  </div>
+</template>
+
+<script>
+import TodoList from './components/TodoList.vue'
+
+export default {
+  name: 'App',
+  components: {
+    TodoList
+  },
+  data() {
+    return {
+      todos: [
+        { id: 1, text: 'Вивчити Vue.js', completed: false },
+        { id: 2, text: 'Створити додаток', completed: false },
+        { id: 3, text: 'Опублікувати проект', completed: false }
+      ]
+    }
+  }
+}
+</script>
+
+<style>
+.todo-app {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+</style>
